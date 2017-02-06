@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head __del>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>翻译页面部分</title>
+</head>
+<body>
+<div id="msg-history-component"></div>
+<script type="text/html" id="chat-history">
+    <div class="positionA icon-trans-plat-wrapper">
+        <select class="btn btn-default btn-xs jsTranslator displayNon">
+            <option value="baidu">百度翻译</option>
+            <option value="google">谷歌翻译</option>
+            <option value="youdao">有道翻译</option>
+            <option value="bing">bing翻译</option>
+        </select>
+        <div class="icon-trans-col clearfix icon-right">
+            <div class="icon-trans jsTransPlatForm baidu" trans-plat="baidu">百</div>
+            <div class="icon-trans jsTransPlatForm bing positionR" trans-plat="bing"><div class="bing-bg"></div><div class="positionA bing-word">b</div></div>
+            <div class="icon-trans jsTransPlatForm youdao" trans-plat="youdao">有</div>
+            <div class="icon-trans jsTransPlatForm google" trans-plat="google">G</div>
+        </div>
+    </div>
+    <div class="positionA icon-trans-all-wrapper">
+        <div class="icon-trans-all-col clearfix">
+            <div class="icon-trans jsTransAll" callback="1" title="全部翻译">全</div>
+            <div class="icon-trans jsTransAll" callback="2" title="翻译卖家">卖</div>
+            <div class="icon-trans jsTransAll" callback="3" title="翻译买家">买</div>
+        </div>
+    </div>
+    <div class="positionA icon-trans-lang-wrapper">
+        <select class="btn btn-default btn-xs jsTransLanger displayNon">
+            <option value="cn" selected="selected">中</option>
+            <option value="en">英</option>
+        </select>
+        <div class="icon-trans-col clearfix ">
+            <div class="icon-trans jsTransLang cn" trans-lang="cn" title="历史消息翻译目标语言">中</div>
+            <div class="icon-trans jsTransLang en" trans-lang="en" title="历史消息翻译目标语言">英</div>
+        </div>
+    </div>
+    <div class="positionA icon-trans-lang-reply-wrapper">
+        <select class="btn btn-default btn-xs jsTransLangReplier displayNon">
+            <option value="en" selected="selected">英</option>
+            <option value="Russian">俄</option>
+            <option value="Portuguese">葡</option>
+            <option value="Spanish">西</option>
+        </select>
+        <div class="icon-trans-col clearfix icon-right">
+            <div class="icon-trans jsTransLangReply en" trans-lang="en" title="编辑消息翻译目标语言">英</div>
+            <div class="icon-trans jsTransLangReply Russian" trans-lang="Russian" title="编辑消息翻译目标语言">俄</div>
+            <div class="icon-trans jsTransLangReply Portuguese" trans-lang="Portuguese" title="编辑消息翻译目标语言">葡</div>
+            <div class="icon-trans jsTransLangReply Spanish" trans-lang="Spanish" title="编辑消息翻译目标语言">西</div>
+        </div>
+    </div>
+    <input type="hidden" id="buyerUser" value="{{msgData.buyerUser}}">
+    {{!--#reverseArr this.data--}}
+    {{#each msgData.msgList as |val key|}}
+    <div class="clearfix {{#if val.isReply}}customer-part{{else}}service-part{{/if}}">
+        <div class="info">
+            <div class="name">{{val.senderName}}</div>
+            <div class="time">{{val.sendTime}}</div>
+            {{#if val.memo}}
+            <div class="text-red">({{val.memo}})</div>
+            {{/if}}
+        </div>
+        <div class="msg">
+            <div class="positionR">
+                <div class="clearfix">
+                    {{#checkContent val}}
+                    <a class="pull-left small-padding small-distance add-distance add-space border-info border-round" href="{{imgHref}}" target='_blank'>
+                        <img class="jsPopBigPic" src="{{imgSrc}}"/>
+                    </a>
+                    {{else}}
+                    <a class="pull-left small-padding " href="{{imgHref}}" target='_blank'>
+                        <i class="glyphicon glyphicon-picture no-pics-icon no-height"></i>
+                    </a>
+                    {{/checkContent}}
+                    {{#if val.follow.productImageUrl}}
+                    {{#with val.follow}}
+                    {{/with}}
+                    {{/if}}
+                    {{#contentWithImg val.content}}
+                    {{!--留言文字---}}
+                    {{/contentWithImg}}
+                </div>
+                <div class="positionA icon-trans-area">
+                    <div class="icon-trans-col clearfix">
+                        <div class="icon-trans baidu jsTranslate">百</div>
+                        <div class="icon-trans bing jsTranslate positionR"><div class="bing-bg"></div><div class="positionA bing-word">b</div></div>
+                        <div class="icon-trans youdao jsTranslate">有</div>
+                        <div class="icon-trans google jsTranslate ">G</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+    {{!--/reverseArr--}}
+</script>
+<script src="jquery.js"></script>
+<script src="translate.js"></script>
+<script src="loadHistory.js"></script>
+<script src="init.js"></script>
+</body>
+</html>
